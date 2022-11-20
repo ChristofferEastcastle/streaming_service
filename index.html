@@ -1,0 +1,51 @@
+<style>
+    #header {
+        text-align: center;
+        color: darkgoldenrod;
+        font-size: 5em;
+        background: -webkit-linear-gradient(darkgoldenrod, darkorange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 20px;
+    }
+    #content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 50px;
+    }
+
+</style>
+
+<h1 id="header">FLIXXERN</h1>
+<div id="content"></div>
+<script>
+    const content = document.getElementById('content');
+    const fetchData = async () => {
+        const data = await fetch("http://localhost:5000/movies")
+        const movieJson = await data.json();
+        movieJson.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+        movieJson.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.style = "margin: 5px; padding: 10px; border: 0px solid black; width: 240px; height: 320px; text-align: center";
+            const movieTitle = document.createElement('h3');
+            movieTitle.innerText = movie.title;
+            movieTitle.style.fontSize = "1em";
+            movieTitle.style.paddingTop = "4px";
+            const movieYear = document.createElement('h4');
+            movieYear.innerText = movie.year;
+            movieYear.style.fontSize = "0.8em";
+            const movieImage = document.createElement('img');
+            movieImage.src = movie.posterUrl;
+            movieImage.style = "width: 80%; height: 80%;";
+            movieDiv.appendChild(movieImage);
+            movieDiv.appendChild(movieTitle);
+            movieDiv.appendChild(movieYear);
+            content.appendChild(movieDiv);
+        });
+    }
+    fetchData()
+
+</script>
