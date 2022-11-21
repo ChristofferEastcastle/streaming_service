@@ -7,12 +7,12 @@ async function fetchVideo(id: string) {
 
 export default async function Watch({params}: any) {
     const video = await fetchVideo(params.id);
-    
+    const url = "http://" + video.host + "/stream?video=" + video.location;
     return (
         <div>
             <h1 className="header">Watch</h1>
             <div className={styles.container}>
-                <video className={styles.video} src={video} controls autoPlay={true}/>
+                <video id={"video-player"} className={styles.video} src={url}  controls autoPlay={true} />
             </div>
         </div>
     )

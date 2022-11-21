@@ -14,6 +14,7 @@ interface Movie {
 async function fetchData() {
     const data = await fetch("http://127.0.0.1:5000/movies");
     const movies = await data.json();
+    //Sorting by rating
     movies.sort((a: any, b: any) => parseFloat(b.rating) - parseFloat(a.rating));
     if (!data.ok) {
         throw new Error("HTTP error " + data.status);
