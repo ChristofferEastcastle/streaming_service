@@ -1,4 +1,5 @@
 import styles from './page.module.css'
+import Link from "next/link";
 
 interface Movie {
     title: string;
@@ -35,13 +36,15 @@ export default async function Browse() {
 
 function VideoCard({movie}: { movie: Movie }) {
     return (
-        <div className={styles.movieCard}>
-            <div className={styles.relative}>
-                <img className={styles.play} src={"play.svg"} alt={"play button"}/>
-                <img className={styles.img} src={movie.posterUrl} alt={movie.title}/>
+        <Link href={`/watch/${movie.guid}`}>
+            <div className={styles.movieCard}>
+                <div className={styles.relative}>
+                    <img className={styles.play} src={"play.svg"} alt={"play button"}/>
+                    <img className={styles.img} src={movie.posterUrl} alt={movie.title}/>
+                </div>
+                <h3 className={styles.title}>{movie.title}</h3>
+                <p className={styles.year}>{movie.year}</p>
             </div>
-            <h3 className={styles.title}>{movie.title}</h3>
-            <p className={styles.year}>{movie.year}</p>
-        </div>
+        </Link>
     )
 }
