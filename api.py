@@ -54,6 +54,18 @@ def fetch_movie(id):
     movie["host"] = request.host
     return jsonify(movie)
 
+
+@app.route("/movies/<id>/subtitles")
+def fetch_subtitles(id):
+    movies = fetch_movies()
+    movie = next(movie for movie in movies if movie["guid"] == id)
+    folder = movie_base_url + movie["locations"][0].split("/")[0]
+    print(folder)
+
+	for x,y,z in os.walk(folder):
+	        if ".vtt" in z:
+	        	return z
+
 CORS(app)
 
 @app.route("/stream")
