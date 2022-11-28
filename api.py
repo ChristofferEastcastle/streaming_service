@@ -19,12 +19,12 @@ def map_movie(movie):
         "year": movie.year,
         "rating": movie.rating,
         "streamURL": movie.getStreamURL(),
-        "locations": movie.locations,
+        "locations": map(lambda loc: loc.split("/movies")[1], movie.locations),
         "test": "test"
     }
 
 
-movie_base_url = "/home/chris/"
+movie_base_url = "/home/chris/Documents/movies"
 
 
 def fetch_movies():

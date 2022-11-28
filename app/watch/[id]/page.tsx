@@ -1,15 +1,13 @@
 import styles from './page.module.css'
 
 async function fetchVideo(id: string) {
-    // const res = await fetch(`http://cborg.no:5000/movies/${id}`)
-    const res = await fetch(`http://localhost:5000/movies/${id}`)
+    const res = await fetch(`http://cborg.no:5000/movies/${id}`)
     return await res.json()
 }
 
 export default async function Watch({params}: any) {
     const video = await fetchVideo(params.id);
-    //const url = "http://" + "cborg.no:5000" + "/stream?video=" + video.location;
-    const url = "http://localhost:5000/stream?video=";
+    const url = "http://cborg.no:5000/stream?video=";
     console.log(url);
     return (
         <div>
