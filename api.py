@@ -62,9 +62,10 @@ def fetch_subtitles(id):
     folder = movie_base_url + movie["locations"][0].split("/")[0]
     print(folder)
 
-	for x,y,z in os.walk(folder):
-	        if ".vtt" in z:
-	        	return z
+    for x,y,z in os.walk(folder):
+        if ".vtt" in z:
+            return z
+
 
 CORS(app)
 
