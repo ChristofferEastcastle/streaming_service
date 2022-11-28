@@ -19,8 +19,7 @@ def map_movie(movie):
         "year": movie.year,
         "rating": movie.rating,
         "streamURL": movie.getStreamURL(),
-        "locations": map(lambda loc: loc.split("/movies")[1], movie.locations),
-        "test": "test"
+        "locations": list(map(lambda loc: loc.split("/movies")[1], movie.locations))
     }
 
 
