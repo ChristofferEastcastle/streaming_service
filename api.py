@@ -89,7 +89,7 @@ def stream():
             chunk = f.read(content_length)
             yield chunk
 
-    return Response(stream(), 206, headers=headers)
+    return Response(stream(), 206, mimetype="video/mp4", headers=headers)
 
 
 @app.route("/somevideo")

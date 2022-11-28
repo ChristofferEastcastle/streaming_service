@@ -21,7 +21,6 @@ export default async function Watch({params}: any) {
                     controlsList={"nodownload"}
                     >
                     {video.locations.map((location: string) => <source src={url + location}/>)}
-                    <source src={video.streamURL}/>
                 </video>
             </div>
         </div>
