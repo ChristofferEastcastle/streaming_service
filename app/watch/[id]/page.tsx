@@ -1,14 +1,13 @@
 import styles from './page.module.css'
 
 async function fetchVideo(id: string) {
-    const res = await fetch(`http://cborg.no:5000/movies/${id}`)
+    const res = await fetch(`http://server.home:5000/movies/${id}`)
     return await res.json()
 }
 
-export default async function Watch({params}: any) {
+export default async function Watch({ params }: any) {
     const video = await fetchVideo(params.id);
-    const url = "http://cborg.no:5000/stream?video=";
-    console.log(url);
+    const url = "http://server.home:5000/stream?video=";
     return (
         <div>
             <h1 className="header">Watch</h1>
@@ -19,8 +18,9 @@ export default async function Watch({params}: any) {
                     controls
                     autoPlay={true}
                     controlsList={"nodownload"}
-                    >
-                    {video.locations.map((location: string) => <source src={url + location}/>)}
+                >
+                    {video.locations.map((location: string) => <source src={url + location} type="video/mp4" />)}
+
                 </video>
             </div>
         </div>

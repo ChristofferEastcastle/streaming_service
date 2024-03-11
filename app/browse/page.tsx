@@ -12,7 +12,7 @@ interface Movie {
 }
 
 async function fetchData() {
-    const data = await fetch("http://cborg.no:5000/movies");
+    const data = await fetch("http://127.0.0.1:5000/movies");
     const movies = await data.json();
     //Sorting by rating
     movies.sort((a: any, b: any) => parseFloat(b.rating) - parseFloat(a.rating));
@@ -29,19 +29,19 @@ export default async function Browse() {
         <div>
             <h1 className="header">Browse</h1>
             <div className={styles.content}>
-                {data.map((movie: Movie) => <VideoCard movie={movie} key={movie.guid}/>)}
+                {data.map((movie: Movie) => <VideoCard movie={movie} key={movie.guid} />)}
             </div>
         </div>
     )
 }
 
-function VideoCard({movie}: { movie: Movie }) {
+function VideoCard({ movie }: { movie: Movie }) {
     return (
         <Link href={`/watch/${movie.guid}`}>
             <div className={styles.movieCard}>
                 <div className={styles.relative}>
-                    <img className={styles.play} src={"play.svg"} alt={"play button"}/>
-                    <img className={styles.img} src={movie.posterUrl} alt={movie.title}/>
+                    <img className={styles.play} src={"play.svg"} alt={"play button"} />
+                    <img className={styles.img} src={movie.posterUrl} alt={movie.title} />
                 </div>
                 <h3 className={styles.title}>{movie.title}</h3>
                 <p className={styles.year}>{movie.year}</p>
