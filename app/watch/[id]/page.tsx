@@ -1,3 +1,4 @@
+"use client"
 import styles from './page.module.css'
 
 async function fetchVideo(id: string) {
@@ -6,6 +7,7 @@ async function fetchVideo(id: string) {
 }
 
 export default async function Watch({ params }: any) {
+
     const video = await fetchVideo(params.id);
     const url = "http://server.home:5000/stream?video=";
     return (
@@ -17,9 +19,10 @@ export default async function Watch({ params }: any) {
                     className={styles.video}
                     controls
                     autoPlay={true}
+                    onError={(e) => console.error("ERROR: can not play the video. unsupported format.", e)}
                     controlsList={"nodownload"}
                 >
-                    {video.locations.map((location: string) => <source src={url + location} type="video/mp4" />)}
+                    {video.locations.map((location: string) => <source key={url + location} src={url + location} />)}
 
                 </video>
             </div>
