@@ -82,7 +82,8 @@ def stream():
     video_size = os.path.getsize(movie_base_url + video_requested)
     end = min(int(start) + int(chunk_size), video_size)
     content_length = end - start + 1
-    print(chunk_size, start, end, video_size)
+    with open("/home/chris/streaming_service/stream.txt", "a") as f:
+        f.write(f"-------------: {chunk_size} {start} {end} {video_size}")
 
     headers = {
         "Content-Range": f"bytes {start}-{end}/{video_size}",
