@@ -1,8 +1,10 @@
 #!/bin/env python3
 import os
+import io
 from flask import Flask, jsonify, send_file, request, Response
 from flask_cors import CORS
 from plexapi.server import PlexServer
+import requests as req
 
 baseurl = os.getenv("PLEX_URL")
 token = os.getenv("PLEX_TOKEN")
@@ -51,7 +53,8 @@ CORS(app)
 def fetch_movie(id):
     movies = fetch_movies()
     movie = next(movie for movie in movies if movie["guid"] == id)
-    movie["host"] = request.host
+#     movie["host"] = request.host
+    movie["host"] = baseurl
     return jsonify(movie)
 
 
@@ -109,6 +112,21 @@ def stream():
 @app.route("/somevideo")
 def video():
     return send_file("/home/chris/streaming_service/public/yt.mp4")
+
+@app.route("/poster")
+def poster():
+    response = req.get(request.args.get("posterUrl"))
+
+    # Get content type from the original response headers, default to octet-stream
+    content_type = response.headers.get("Content-Type", "application/octet-stream")
+
+    # Wrap the content in a BytesIO object to make it a file-like object
+    return send_file(
+        io.BytesIO(response.content),
+        mimetype=content_type,
+        as_attachment=False  # Set to True if you want the browser to download it
+    )
+
 
 
 app.run(host="0.0.0.0", debug=True, threaded=True)
