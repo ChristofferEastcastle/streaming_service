@@ -1,15 +1,17 @@
 "use client"
 import styles from './page.module.css'
 
+const server = process.env.NEXT_PUBLIC_PLEX_SERVER;
 async function fetchVideo(id: string) {
-    const res = await fetch(`http://server.home:5000/movies/${id}`)
-    return await res.json()
+  const res = await fetch(`${server}/movies/${id}`)
+
+  return await res.json()
 }
 
 export default async function Watch({ params }: any) {
-
     const video = await fetchVideo(params.id);
-    const url = "http://server.home:5000/stream?video=";
+    const url = `${server}/stream?video=`;
+
     return (
         <div>
             <h1 className="header">Watch</h1>
