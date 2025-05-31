@@ -13,9 +13,9 @@ export default async function Watch({ params }: any) {
     const url = `${server}/stream?video=`;
 
     return (
-        <div>
-            <h1 className="header">Watch</h1>
-            <div className={styles.container}>
+        <div className={"video-page-container"}>
+            <h1 className="section-title">{video.title || "Watch"}</h1>
+            <div className="video-container">
                 <video
                     id={"video-player"}
                     className={styles.video}
