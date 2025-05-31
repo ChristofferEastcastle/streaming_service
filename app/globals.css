@@ -1,9 +1,113 @@
+/* Color Palette: Forest & Stone Serenity - Light Mode */
+:root {
+  --color-bg-primary: #F0F4F8; /* Light background */
+  --color-text-primary: #31473A; /* Dark green/grey for main text */
+  --color-text-secondary: #52616B; /* Muted grey for secondary text */
+  --color-accent-primary: #66A5AD; /* Teal/blue for accents */
+  --color-accent-secondary: #C4DFE6; /* Light blue for secondary accents/backgrounds */
+  --color-border: #D3DCE6; /* Light grey for borders */
+  --color-white: #FFFFFF;
+  --color-gray-300: #D1D5DB;
+  --color-gray-500: #6B7280;
+
+  /* Navbar specific */
+  --navbar-bg: var(--color-white);
+  --navbar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --navbar-logo-primary: var(--color-accent-primary);
+  --navbar-logo-secondary: var(--color-text-primary);
+  --navbar-link-hover: var(--color-accent-primary);
+  --navbar-link-active: var(--color-accent-primary);
+  --navbar-link-inactive: var(--color-text-secondary);
+
+  /* Content card specific */
+  --card-bg: var(--color-white);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --card-border: var(--color-border);
+  --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --card-hover-border: var(--color-accent-primary);
+  --card-image-placeholder-bg: var(--color-gray-300);
+  --card-image-placeholder-text: var(--color-gray-500);
+  --card-title-color: var(--color-text-primary);
+  --card-year-color: var(--color-text-secondary);
+
+  /* Hero section specific */
+  --hero-bg: var(--color-accent-secondary);
+  --hero-overlay-gradient: linear-gradient(to top, var(--color-accent-primary), transparent);
+  --hero-title-color: var(--color-white);
+  --hero-description-color: var(--color-white);
+  --hero-button-bg: var(--color-text-primary);
+  --hero-button-text: var(--color-white);
+  --hero-button-hover-bg: var(--color-text-secondary);
+
+  /* Section title specific */
+  --section-title-color: var(--color-text-primary);
+
+  /* Dark mode toggle button */
+  --toggle-bg: #E2E8F0;
+  --toggle-icon-color: #4A5568;
+  --toggle-hover-bg: #CBD5E0;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --color-bg-primary: #1A202C; /* Dark charcoal background */
+  --color-text-primary: #E2E8F0; /* Light text for main content */
+  --color-text-secondary: #A0AEC0; /* Muted light grey for secondary text */
+  --color-accent-primary: #66A5AD; /* Teal/blue for accents (same as light) */
+  --color-accent-secondary: #2D3748; /* Darker blue for secondary accents/backgrounds */
+  --color-border: #4A5568; /* Darker grey for borders */
+  --color-white: #2D3748; /* Darker white for card backgrounds */
+  --color-gray-300: #4A5568;
+  --color-gray-500: #A0AEC0;
+
+  /* Navbar specific */
+  --navbar-bg: #2D3748; /* Darker navbar background */
+  --navbar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --navbar-logo-primary: var(--color-accent-primary);
+  --navbar-logo-secondary: var(--color-text-primary);
+  --navbar-link-hover: var(--color-accent-primary);
+  --navbar-link-active: var(--color-accent-primary);
+  --navbar-link-inactive: var(--color-text-secondary);
+
+  /* Content card specific */
+  --card-bg: #2D3748; /* Darker card background */
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --card-border: #4A5568;
+  --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --card-hover-border: var(--color-accent-primary);
+  --card-image-placeholder-bg: #4A5568;
+  --card-image-placeholder-text: #A0AEC0;
+  --card-title-color: var(--color-text-primary);
+  --card-year-color: var(--color-text-secondary);
+
+  /* Hero section specific */
+  --hero-bg: var(--color-accent-secondary); /* Darker hero background */
+  --hero-overlay-gradient: linear-gradient(to top, var(--color-accent-primary), transparent);
+  --hero-title-color: var(--color-text-primary); /* Light text for hero title */
+  --hero-description-color: var(--color-text-secondary); /* Muted light text for hero description */
+  --hero-button-bg: var(--color-accent-primary); /* Accent color for button */
+  --hero-button-text: var(--color-text-primary); /* Light text for button */
+  --hero-button-hover-bg: #528B93; /* Slightly darker accent on hover */
+
+  /* Section title specific */
+  --section-title-color: var(--color-text-primary);
+
+  /* Dark mode toggle button */
+  --toggle-bg: #4A5568;
+  --toggle-icon-color: #E2E8F0;
+  --toggle-hover-bg: #6B7280;
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
 }
 
 a {
@@ -15,22 +119,306 @@ a {
   box-sizing: border-box;
 }
 
-.header {
-  text-align: center;
-  color: darkgoldenrod;
-  font-size: 3em;
-  background: -webkit-linear-gradient(darkgoldenrod, darkorange);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 20px;
+/* Base Body Styles */
+.body-base {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Navbar Styles */
+.navbar {
+  background-color: var(--navbar-bg);
+  box-shadow: var(--navbar-shadow);
+  padding: 1rem; /* p-4 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navbar-logo {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700; /* font-bold */
+  color: var(--navbar-logo-primary);
+}
+
+.navbar-logo-text-primary {
+  color: var(--navbar-logo-secondary);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem; /* space-x-6 */
+  align-items: center; /* Align items vertically */
+}
+
+.navbar-link {
+  font-size: 1.125rem; /* text-lg */
+  transition: color 0.2s ease;
+  padding: 0.5rem 0.75rem; /* Add padding for better click area */
+  border-radius: 0.25rem; /* Slightly rounded corners */
+}
+
+.navbar-link:hover {
+  color: var(--navbar-link-hover);
+}
+
+.navbar-link.active { /* Style for active link */
+  color: var(--navbar-link-active);
+  font-weight: 600;
+  background-color: rgba(102, 165, 173, 0.1); /* Light background for active state */
+}
+
+.navbar-link-home {
+  font-weight: 600; /* font-semibold */
+}
+
+.navbar-link-browse {
+  color: var(--navbar-link-inactive);
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  background-color: var(--toggle-bg);
+  border: none;
+  border-radius: 9999px; /* Full rounded */
+  padding: 0.5rem; /* p-2 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  margin-left: 1rem; /* Space from links */
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--toggle-hover-bg);
+}
+
+.dark-mode-toggle-icon {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  color: var(--toggle-icon-color);
+}
+
+
+/* App Container (for page.tsx main div) */
+.app-container {
+  min-height: 100vh;
+  padding: 2rem; /* p-8 */
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) { /* md: */
+  .app-container {
+    padding: 3rem; /* md:p-12 */
   }
-  body {
-    color: white;
-    background: black;
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .app-container {
+    padding: 4rem; /* lg:p-16 */
   }
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 24rem; /* h-96 */
+  background-color: var(--hero-bg);
+  border-radius: 0.75rem; /* rounded-xl */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem; /* p-8 */
+  margin-bottom: 4rem; /* mb-16 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  overflow: hidden;
+}
+
+@media (min-width: 768px) { /* md: */
+  .hero-section {
+    height: 500px; /* md:h-[500px] */
+    padding: 3rem; /* md:p-12 */
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0; /* absolute inset-0 */
+  background: var(--hero-overlay-gradient);
+  opacity: 0.7;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 10;
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  color: var(--hero-title-color);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* drop-shadow-md */
+}
+
+@media (min-width: 768px) { /* md: */
+  .hero-title {
+    font-size: 3.75rem; /* md:text-6xl */
+  }
+}
+
+.hero-description {
+  position: relative;
+  z-index: 10;
+  margin-top: 1rem; /* mt-4 */
+  font-size: 1.125rem; /* text-lg */
+  color: var(--hero-description-color);
+  max-width: 50rem; /* max-w-2xl */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* drop-shadow-sm */
+}
+
+@media (min-width: 768px) { /* md: */
+  .hero-description {
+    font-size: 1.25rem; /* md:text-xl */
+  }
+}
+
+.hero-button {
+  position: relative;
+  z-index: 10;
+  margin-top: 2rem; /* mt-8 */
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  background-color: var(--hero-button-bg);
+  color: var(--hero-button-text);
+  font-weight: 600; /* font-semibold */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+  transition: background-color 0.3s ease;
+  align-self: flex-start; /* self-start */
+  border: none; /* Ensure no default button border */
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: var(--hero-button-hover-bg);
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 2rem; /* mb-8 */
+  color: var(--section-title-color);
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* grid-cols-2 */
+  gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 640px) { /* sm: */
+  .content-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* sm:grid-cols-3 */
+  }
+}
+
+@media (min-width: 768px) { /* md: */
+  .content-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* md:grid-cols-4 */
+  }
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .content-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr)); /* lg:grid-cols-5 */
+  }
+}
+
+/* Content Card (Unified style for both home and browse) */
+.content-card {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.2s ease; /* Added transform and border-color for hover */
+  display: flex; /* Added for vertical layout */
+  flex-direction: column; /* Added for vertical layout */
+  height: 360px; /* Adjusted height for consistency with new image size */
+  width: 240px; /* Fixed width for consistency */
+  text-align: center;
+  margin: 0.5rem;
+  padding: 0; /* Remove padding from card itself, move to inner elements */
+}
+
+.content-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--card-hover-border); /* Highlight on hover */
+}
+
+.content-card-image {
+  position: relative; /* For play icon positioning */
+  width: 100%;
+  height: 85%; /* Image takes up 85% of card height */
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners only */
+  display: flex; /* To center the image */
+  align-items: center; /* To center the image */
+  justify-content: center; /* To center the image */
+}
+
+.content-card-img-actual {
+  width: 100%; /* Fill the image container width */
+  height: 100%; /* Fill the image container height */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  border-radius: 0.25rem; /* Keep slight rounding for image itself */
+  transition: transform 0.3s ease; /* Smooth transition for zoom */
+}
+
+.content-card:hover .content-card-img-actual {
+  transform: scale(1.05); /* Slight zoom on hover for the image itself */
+}
+
+.play-icon {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+  z-index: 10; /* Ensure it's above the image */
+}
+
+.content-card:hover .play-icon {
+  opacity: 1; /* Visible on hover */
+}
+
+.content-card-text-area { /* New class for the text content below the image */
+  padding: 0.75rem; /* Adjusted padding for text */
+  text-align: center;
+  flex-grow: 1; /* Allow it to take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.content-card-title {
+  font-weight: 600; /* font-semibold */
+  font-size: 1.1em; /* Slightly larger for prominence */
+  color: var(--card-title-color);
+  margin-bottom: 0.25rem; /* small margin to separate from year */
+  white-space: nowrap; /* Prevent title wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long titles */
+}
+
+.content-card-year { /* Renamed from content-card-genre for clarity */
+  font-size: 0.9em; /* Slightly larger for readability */
+  color: var(--card-year-color);
+  margin-top: 0; /* Remove top margin as it's directly under title */
 }
