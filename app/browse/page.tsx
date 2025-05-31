@@ -35,7 +35,6 @@ function VideoCard({ movie }: { movie: Movie }) {
         <Link href={`/watch/${movie.guid}`}>
             <div className="content-card"> {/* Using the unified content-card style */}
                 <div className="content-card-image"> {/* Using the unified image container style */}
-                    <img className="play-icon" src={"/play.svg"} alt={"play button"} /> {/* Using the new play-icon class */}
                     <img className="content-card-img-actual" src={server + "/poster?posterUrl=" + movie.posterUrl} alt={movie.title} /> {/* Using the unified actual image style */}
                 </div>
                 <div className="content-card-text-area"> {/* New div for title and year */}
