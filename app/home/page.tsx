@@ -1,5 +1,5 @@
-import {fetchData, Movie, VideoCard} from "./browse/page";
 import Link from "next/link";
+import {fetchData, Movie, VideoCard} from "../browse/page";
 
 function createMovieList(movies: Movie[]) {
   return <>

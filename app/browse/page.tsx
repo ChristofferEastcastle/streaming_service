@@ -30,7 +30,7 @@ export async function fetchData(): Promise<Movie[]> {
     }
 }
 
-export async function VideoCard({ movie }: { movie: Movie }) {
+export function VideoCard({ movie }: { movie: Movie }) {
     if (!movie || !movie.guid || !movie.posterUrl) {
         console.error("Invalid movie data:", movie);
         return null; // Handle invalid movie data gracefully
@@ -60,7 +60,13 @@ export default async function Browse() {
             <h1 className="section-title">Browse All Movies</h1> {/* Consistent section title styling */}
             <div className="content-grid"> {/* Using content-grid for consistent layout */}
                 {movies.length > 0 ? (
-                    movies.map((movie: Movie) => <VideoCard movie={movie}/>)
+                    movies.map((movie: Movie) => {
+                        return (
+                        <div key={movie.guid}>
+                        <VideoCard movie={movie}/>
+                        </div>
+                        )
+                    })
                 ) : (
                     <p>No movies found or failed to load movies. Please ensure NEXT_PUBLIC_PLEX_SERVER is configured correctly.</p>
                 )}
