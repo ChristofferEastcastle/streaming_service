@@ -1,4 +1,21 @@
+import {fetchData, Movie, VideoCard} from "./browse/page";
+import Link from "next/link";
+
+function createMovieList(movies: Movie[]) {
+  return <>
+    {movies.map((movie) => {
+      return (
+          <div key={movie.guid}>
+            <VideoCard movie={movie}/>
+          </div>
+      );
+    })}
+  </>;
+}
+
 export default async function Home() {
+  const movies = await fetchData();
+
   return (
       <div className="app-container">
         {/* Hero Section */}
@@ -8,29 +25,18 @@ export default async function Home() {
             Discover Your Next Obsession
           </h2>
           <p className="hero-description">
-            Stream thousands of movies and TV shows, hand-picked for you.
+            Stream thousands of movies, hand-picked for you.
           </p>
-          <button className="hero-button">
-            Start Browsing
-          </button>
+          <Link href={"/browse"} className="hero-button">
+            Browse Movies
+          </Link>
         </section>
 
         {/* Trending Now Section (Placeholder) */}
         <section className="mb-16">
           <h3 className="section-title">Trending Now</h3>
           <div className="content-grid">
-            {/* Placeholder Content Cards */}
-            {[...Array(10)].map((_, i) => (
-                <div key={i} className="content-card">
-                  <div className="content-card-image">
-                    <img src={`https://placehold.co/150x225/C4DFE6/31473A?text=Content+${i + 1}`} alt={`Placeholder ${i + 1}`} className="content-card-img-actual"/>
-                  </div>
-                  <div className="content-card-info">
-                    <h4 className="content-card-title">Placeholder Title {i + 1}</h4>
-                    <p className="content-card-year">2023</p>
-                  </div>
-                </div>
-            ))}
+            {createMovieList(movies.slice(0, 10))}
           </div>
         </section>
 
@@ -38,18 +44,7 @@ export default async function Home() {
         <section>
           <h3 className="section-title">New Releases</h3>
           <div className="content-grid">
-            {/* Placeholder Content Cards */}
-            {[...Array(10)].map((_, i) => (
-                <div key={i} className="content-card">
-                  <div className="content-card-image">
-                    <img src={`https://placehold.co/150x225/C4DFE6/31473A?text=Content+${i + 1}`} alt={`Placeholder ${i + 1}`} className="content-card-img-actual"/>
-                  </div>
-                  <div className="content-card-info">
-                    <h4 className="content-card-title">Placeholder Title {i + 1}</h4>
-                    <p className="content-card-year">2024</p>
-                  </div>
-                </div>
-            ))}
+            {createMovieList(movies.sort((a, b) => b.year - a.year).slice(0, 10))}
           </div>
         </section>
       </div>
