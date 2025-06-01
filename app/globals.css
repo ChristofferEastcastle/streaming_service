@@ -439,7 +439,7 @@ a {
 }
 
 .video-player {
-  width: 100%; /* Full width of its container */
+  width: 80%; /* Full width of its container */
   height: auto; /* Maintain aspect ratio */
   aspect-ratio: 16 / 9; /* Common video aspect ratio */
   background-color: var(--video-bg-color); /* Black background for video area */

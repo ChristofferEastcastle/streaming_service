@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-interface Movie {
+export interface Movie {
     title: string;
     rating: number;
     year: number;
@@ -12,7 +12,7 @@ interface Movie {
 
 const server = process.env.NEXT_PUBLIC_PLEX_SERVER; // Ensure this env variable is set
 
-async function fetchData() {
+export async function fetchData(): Promise<Movie[]> {
     console.log("Fetching data from server", server);
     try {
         const data = await fetch(`${server}/movies`);
@@ -30,12 +30,18 @@ async function fetchData() {
     }
 }
 
-function VideoCard({ movie }: { movie: Movie }) {
+export async function VideoCard({ movie }: { movie: Movie }) {
+    if (!movie || !movie.guid || !movie.posterUrl) {
+        console.error("Invalid movie data:", movie);
+        return null; // Handle invalid movie data gracefully
+    }
+
+
     return (
-        <Link href={`/watch/${movie.guid}`}>
+        <Link href={`/watch/${movie.guid}`} >
             <div className="content-card"> {/* Using the unified content-card style */}
                 <div className="content-card-image"> {/* Using the unified image container style */}
-                    <img className="content-card-img-actual" src={server + "/poster?posterUrl=" + movie.posterUrl} alt={movie.title} /> {/* Using the unified actual image style */}
+                    <img className="content-card-img-actual" src={server + "/poster?posterUrl=" + movie.posterUrl} alt={"image"} /> {/* Using the unified actual image style */}
                 </div>
                 <div className="content-card-text-area"> {/* New div for title and year */}
                     <h3 className="content-card-title">{movie.title}</h3> {/* Using the unified title style */}
@@ -54,7 +60,7 @@ export default async function Browse() {
             <h1 className="section-title">Browse All Movies</h1> {/* Consistent section title styling */}
             <div className="content-grid"> {/* Using content-grid for consistent layout */}
                 {movies.length > 0 ? (
-                    movies.map((movie: Movie) => <VideoCard movie={movie} key={movie.guid} />)
+                    movies.map((movie: Movie) => <VideoCard movie={movie}/>)
                 ) : (
                     <p>No movies found or failed to load movies. Please ensure NEXT_PUBLIC_PLEX_SERVER is configured correctly.</p>
                 )}

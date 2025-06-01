@@ -18,7 +18,7 @@ export default async function Watch({ params }: any) {
             <div className="video-container">
                 <video
                     id={"video-player"}
-                    className={styles.video}
+                    className={"video-player"}
                     controls
                     autoPlay={true}
                     onError={(e) => console.error("ERROR: can not play the video. unsupported format.", e)}
