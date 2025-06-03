@@ -18,7 +18,6 @@ export default async function Home() {
 
   return (
       <div className="app-container">
-        {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-overlay"></div>
           <h2 className="hero-title">
@@ -32,7 +31,6 @@ export default async function Home() {
           </Link>
         </section>
 
-        {/* Trending Now Section (Placeholder) */}
         <section className="mb-16">
           <h3 className="section-title">Trending Now</h3>
           <div className="content-grid">
@@ -40,7 +38,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* New Releases Section (Placeholder) */}
         <section>
           <h3 className="section-title">New Releases</h3>
           <div className="content-grid">

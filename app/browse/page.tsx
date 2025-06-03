@@ -30,8 +30,8 @@ export async function fetchData(): Promise<Movie[]> {
     }
 }
 
-export function VideoCard({ movie }: { movie: Movie }) {
-    if (!movie || !movie.guid || !movie.posterUrl) {
+export function VideoCard({ movie }: Readonly<{ movie: Movie }>) {
+    if (!movie.guid && !movie.posterUrl) {
         console.error("Invalid movie data:", movie);
         return null; // Handle invalid movie data gracefully
     }
@@ -56,9 +56,9 @@ export default async function Browse() {
     const movies = await fetchData();
 
     return (
-        <div className="app-container"> {/* Consistent app container styling */}
-            <h1 className="section-title">Browse All Movies</h1> {/* Consistent section title styling */}
-            <div className="content-grid"> {/* Using content-grid for consistent layout */}
+        <div className="app-container">
+            <h1 className="section-title">Browse All Movies</h1>
+            <div className="content-grid">
                 {movies.length > 0 ? (
                     movies.map((movie: Movie) => {
                         return (

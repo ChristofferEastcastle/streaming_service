@@ -3,13 +3,13 @@
 import './globals.css';
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
-import { useState } from "react"; // Hook to get the current path
+import React, { useState } from "react"; // Hook to get the current path
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   const pathname = usePathname(); // Get the current path
   const [darkMode, setDarkMode] = useState(false);
 
@@ -31,7 +31,6 @@ export default function RootLayout({
         <nav className="navbar">
           <Link href="/home" className="navbar-logo">Vivid<span className="navbar-logo-text-primary">Flow</span></Link>
           <div className="navbar-links">
-            {/* Use pathname to apply 'active' class */}
             <Link href="/" className={`navbar-link ${pathname === '/home' ? 'active' : ''}`}>Home</Link>
             <Link href="/browse" className={`navbar-link ${pathname === '/browse' ? 'active' : ''}`}>Browse</Link>
             <button onClick={toggleDarkMode} className="dark-mode-toggle" aria-label="Toggle dark mode">
