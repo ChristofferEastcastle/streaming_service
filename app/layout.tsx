@@ -3,7 +3,7 @@
 import './globals.css';
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
-import React, { useState } from "react"; // Hook to get the current path
+import React, { useState, useEffect } from "react"; // Hook to get the current path
 
 export default function RootLayout({
   children,
@@ -13,21 +13,32 @@ export default function RootLayout({
   const pathname = usePathname(); // Get the current path
   const [darkMode, setDarkMode] = useState(false);
 
-  function toggleDarkMode() {
-    setDarkMode(!darkMode);
+  useEffect(() => {
+    const isDarkModePreferred = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(isDarkModePreferred);
+  }, []);
+
+  useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'true');
     } else {
       document.body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'false');
     }
+  }, [darkMode]);
+
+  function toggleDarkMode() {
+    setDarkMode(!darkMode);
   }
 
   return (
     <>
       <head>
         <title>VividFlow</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={"dark-mode"}>
+      <body className={darkMode ? "dark-mode" : ""}>
         <nav className="navbar">
           <Link href="/home" className="navbar-logo">Vivid<span className="navbar-logo-text-primary">Flow</span></Link>
           <div className="navbar-links">
