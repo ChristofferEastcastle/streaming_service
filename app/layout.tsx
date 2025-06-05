@@ -12,6 +12,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname(); // Get the current path
   const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const isDarkModePreferred = localStorage.getItem('darkMode') === 'true';
@@ -32,6 +33,10 @@ export default function RootLayout({
     setDarkMode(!darkMode);
   }
 
+  function toggleMenu() {
+    setMenuOpen(!menuOpen);
+  }
+
   return (
     <>
       <head>
@@ -41,22 +46,49 @@ export default function RootLayout({
       <body className={darkMode ? "dark-mode" : ""}>
         <nav className="navbar">
           <Link href="/home" className="navbar-logo">Vivid<span className="navbar-logo-text-primary">Flow</span></Link>
-          <div className="navbar-links">
+          
+          {/* Desktop navigation */}
+          <div className="navbar-links desktop-nav">
             <Link href="/" className={`navbar-link ${pathname === '/home' ? 'active' : ''}`}>Home</Link>
             <Link href="/browse" className={`navbar-link ${pathname === '/browse' ? 'active' : ''}`}>Browse</Link>
             <button onClick={toggleDarkMode} className="dark-mode-toggle" aria-label="Toggle dark mode">
               {darkMode ? (
-                // Sun icon for light mode
                 <svg className="dark-mode-toggle-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 00-1.414-1.414L13.536 3.536a1 1 0 001.414 1.414l.707-.707zm-9.193 9.193a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414l-.707.707zm-.707-1.414a1 1 0 001.414-1.414L5.536 4.536a1 1 0 00-1.414 1.414l.707.707zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1z"></path>
                 </svg>
               ) : (
-                // Moon icon for dark mode
                 <svg className="dark-mode-toggle-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                 </svg>
               )}
             </button>
+          </div>
+
+          {/* Mobile hamburger button */}
+          <button onClick={toggleMenu} className="hamburger-menu" aria-label="Toggle menu">
+            <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+          </button>
+
+          {/* Mobile navigation overlay */}
+          <div className={`mobile-nav-overlay ${menuOpen ? 'open' : ''}`}>
+            <div className="mobile-nav-content">
+              <Link href="/" className={`mobile-nav-link ${pathname === '/home' ? 'active' : ''}`} onClick={toggleMenu}>Home</Link>
+              <Link href="/browse" className={`mobile-nav-link ${pathname === '/browse' ? 'active' : ''}`} onClick={toggleMenu}>Browse</Link>
+              <button onClick={toggleDarkMode} className="mobile-dark-mode-toggle">
+                {darkMode ? (
+                  <svg className="dark-mode-toggle-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 00-1.414-1.414L13.536 3.536a1 1 0 001.414 1.414l.707-.707zm-9.193 9.193a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414l-.707.707zm-.707-1.414a1 1 0 001.414-1.414L5.536 4.536a1 1 0 00-1.414 1.414l.707.707zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1z"></path>
+                  </svg>
+                ) : (
+                  <svg className="dark-mode-toggle-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                  </svg>
+                )}
+                <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
+            </div>
           </div>
         </nav>
         {children}
